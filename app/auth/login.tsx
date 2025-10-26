@@ -1,5 +1,6 @@
 import EmailInput from "@/components/EmailInput";
 import PasswordInput from "@/components/PasswordInput";
+import { useLogin } from "@/hooks/queries/useLogin";
 import { Link } from "expo-router";
 import { FormProvider, useForm } from "react-hook-form";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
@@ -10,6 +11,7 @@ type FormValues = {
 };
 
 export default function LoginScreen() {
+  const loginMutation = useLogin();
   const loginForm = useForm<FormValues>({
     defaultValues: {
       email: "",
@@ -17,7 +19,13 @@ export default function LoginScreen() {
     },
   });
 
-  const handleLogin = async (formValues: FormValues) => {};
+  const handleLogin = async (formValues: FormValues) => {
+    const { email, password } = formValues;
+    loginMutation.mutate({
+      username: email,
+      password: password,
+    });
+  };
 
   return (
     <FormProvider {...loginForm}>
