@@ -1,5 +1,6 @@
 import EmailInput from "@/components/EmailInput";
 import PasswordInput from "@/components/PasswordInput";
+import { Link } from "expo-router";
 import { FormProvider, useForm } from "react-hook-form";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
@@ -41,7 +42,9 @@ export default function LoginScreen() {
             <Text>로그인 버튼</Text>
           </Pressable>
 
-          <Text>이메일로 가입</Text>
+          <Link href={"/auth/signup"}>
+            <Text>이메일로 가입</Text>
+          </Link>
         </View>
       </View>
     </FormProvider>

@@ -6,6 +6,7 @@ export default function AuthLayout() {
     <Stack
       screenOptions={{
         contentStyle: { backgroundColor: colors.WHITE },
+        headerShadowVisible: false, // 헤더 구분선 제거
       }}
     >
       <Stack.Screen
@@ -13,6 +14,12 @@ export default function AuthLayout() {
         options={{
           title: "",
           headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="signup"
+        options={{
+          title: "",
         }}
       />
     </Stack>
