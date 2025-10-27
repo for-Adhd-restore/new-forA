@@ -19,7 +19,6 @@ export function useLogin() {
       await saveSecureStore("refreshToken", refreshToken);
       queryClient.invalidateQueries({ queryKey: ["auth", "getMe"] });
       logOnDev("로그인 성공!");
-      router.replace("/");
     },
     onError: (error) => {
       logOnDev(`로그인 에러: ${error.message}`);
@@ -38,7 +37,6 @@ export function useLogout() {
       setLogout(); // 전역 초기화
       queryClient.resetQueries({ queryKey: ["auth"] }); //쿼리 키 무효화
       logOnDev("로그아웃");
-      router.replace("/auth/login");
     },
   });
 }
