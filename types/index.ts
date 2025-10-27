@@ -6,3 +6,8 @@ export interface User {
   userRole: "USER" | "ADMIN";
   forAdhdType: "FOR_MY_ADHD" | "FOR_CHILDREN_ADHD" | "FOR_AROUND_ADHD";
 }
+
+export interface AuthTokens {
+  accessToken: string;
+  refreshToken: string;
+}
