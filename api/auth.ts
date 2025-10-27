@@ -15,3 +15,7 @@ export const postLogin = async (body: RequestUser): Promise<ResponseUser> => {
   const { data } = await axiosInstance.post("/auth/login", body);
   return data;
 };
+
+export const logout = async () => {
+  await axiosInstance.delete("/auth/logout");
+};
