@@ -1,6 +1,6 @@
 import EmailInput from "@/components/EmailInput";
 import PasswordInput from "@/components/PasswordInput";
-import { useLogin } from "@/hooks/queries/useLogin";
+import { useLogin } from "@/hooks/queries/useAuth";
 import { Link } from "expo-router";
 import { FormProvider, useForm } from "react-hook-form";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
