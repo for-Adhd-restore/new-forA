@@ -1,3 +1,5 @@
+import { logout, postLogin } from "@/api/auth";
+import { queryClient } from "@/api/queryClient";
 import { logOnDev } from "@/utils/logOnDev";
 import { useMutation } from "@tanstack/react-query";
 import { router } from "expo-router";
@@ -9,7 +11,7 @@ export function useLogin() {
     onSuccess: async ({ accessToken, refreshToken }) => {
       await saveSecureStore("accessToken", accessToken);
       await saveSecureStore("refreshToken", refreshToken);
-
+      queryClient.invalidateQueries({ queryKey: ["auth", "getMe"] });
       logOnDev("로그인 성공!");
       router.replace("/");
     },
