@@ -1,3 +1,4 @@
+import { User } from "@/types";
 import { axiosInstance } from "./axiosInstance";
 
 //TODO: 타입 정리
@@ -18,4 +19,9 @@ export const postLogin = async (body: RequestUser): Promise<ResponseUser> => {
 
 export const logout = async () => {
   await axiosInstance.delete("/auth/logout");
+};
+
+export const getMe = async (): Promise<User> => {
+  const { data } = await axiosInstance.get("/user");
+  return data;
 };
