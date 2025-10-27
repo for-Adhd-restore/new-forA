@@ -1,9 +1,8 @@
-import { logout, postLogin } from "@/api/auth";
+import { getMe, logout, postLogin } from "@/api/auth";
 import { queryClient } from "@/api/queryClient";
+import { User } from "@/types";
 import { logOnDev } from "@/utils/logOnDev";
-import { deleteSecureStore, saveSecureStore } from "@/utils/secureStore";
-import { useMutation } from "@tanstack/react-query";
-import { router } from "expo-router";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Alert } from "react-native";
 
 export function useLogin() {
@@ -34,4 +33,26 @@ export function useLogout() {
       router.replace("/auth/login");
     },
   });
+}
+
+export function useGetMe() {
+  const { data: user, isSuccess } = useQuery({
+    queryFn: async (): Promise<User | null> => {
+      const accessToken = await getSecureStore("accessToken"); // 토큰 확인
+      if (!accessToken) {
+        logOnDev("토근이 없습니다. 최초 로그인 사용자입니다.");
+        return null;
+      }
+      const data = await getMe();
+      return data;
+    },
+    queryKey: ["auth", "getMe"],
+    retry: false,
+    staleTime: 1000 * 60 * 10,
+    refetchOnWindowFocus: false, // 사용자가 다른 앱을 보거나 홈 화면에 나갔다가 다시 앱으로 돌아왔을 때(앱이 포커스될 때), 데이터를 자동으로 새로고침하지 않는다.
+    refetchOnMount: false, // 컴포넌트(화면)가 처음 화면에 나타날 때(마운트될 때), 캐시된 데이터가 있더라도 자동으로 데이터를 새로고침(리페치)하지 않는다.
+    refetchOnReconnect: true, //오프라인->온라인 복귀 시 최신 동기화
+  });
+
+  return { user, isSuccess };
 }
