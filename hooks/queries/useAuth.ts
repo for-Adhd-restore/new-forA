@@ -1,7 +1,13 @@
 import { getMe, logout, postLogin } from "@/api/auth";
 import { queryClient } from "@/api/queryClient";
+import { useSetLogout } from "@/store/authStore";
 import { User } from "@/types";
 import { logOnDev } from "@/utils/logOnDev";
+import {
+  deleteSecureStore,
+  getSecureStore,
+  saveSecureStore,
+} from "@/utils/secureStore";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Alert } from "react-native";
 
@@ -23,12 +29,14 @@ export function useLogin() {
 }
 
 export function useLogout() {
+  const setLogout = useSetLogout();
   return useMutation({
     mutationFn: logout,
     onSettled: async () => {
-      await deleteSecureStore("accessToken");
-      await deleteSecureStore("refreshToken");
-      queryClient.resetQueries({ queryKey: ["auth"] });
+      await deleteSecureStore("accessToken"); //토큰 삭제
+      await deleteSecureStore("refreshToken"); //토큰 삭제
+      setLogout(); // 전역 초기화
+      queryClient.resetQueries({ queryKey: ["auth"] }); //쿼리 키 무효화
       logOnDev("로그아웃");
       router.replace("/auth/login");
     },
