@@ -22,3 +22,8 @@ export const createPost = async (
   const { data } = await axiosInstance.post("/posts", body);
   return data;
 };
+
+export const getPost = async (id: number): Promise<Post> => {
+  const { data } = await axiosInstance.get(`/posts/${id}`);
+  return data;
+};
