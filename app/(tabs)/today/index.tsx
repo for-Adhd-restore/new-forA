@@ -1,4 +1,4 @@
-import CustomButton from "@/components/CustomButton";
+import CategoryButtonList from "@/components/CategoryButtonList";
 import FeedList from "@/components/FeedList";
 import { PostCategory } from "@/types";
 import { Link } from "expo-router";
@@ -8,26 +8,10 @@ import { Image, Pressable, StyleSheet, View } from "react-native";
 export default function TodayScreen() {
   const [selectedCategory, setSelectedCategory] =
     useState<PostCategory>("TWENTIES");
+
   return (
     <View style={styles.container}>
-      <View style={styles.categoryContainer}>
-        <CustomButton
-          label="10대"
-          onPress={() => setSelectedCategory("TEENS")}
-        />
-        <CustomButton
-          label="20대"
-          onPress={() => setSelectedCategory("TWENTIES")}
-        />
-        <CustomButton
-          label="30대"
-          onPress={() => setSelectedCategory("THIRTIES_AND_ABOVE")}
-        />
-        <CustomButton
-          label="학부모"
-          onPress={() => setSelectedCategory("PARENTS")}
-        />
-      </View>
+      <CategoryButtonList setSelectedCategory={setSelectedCategory} />
       <FeedList selectedCategory={selectedCategory} />
       <Link href={"/post/write"} asChild>
         <Pressable style={styles.writeButton}>
@@ -45,10 +29,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     borderWidth: 1,
-  },
-  categoryContainer: {
-    flexDirection: "row",
-    gap: 10,
   },
   writeButton: {
     position: "absolute",
