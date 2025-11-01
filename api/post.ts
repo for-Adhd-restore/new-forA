@@ -1,4 +1,4 @@
-import { PostCategory, PostList } from "@/types";
+import { Post, PostCategory, PostList } from "@/types";
 import { axiosInstance } from "./axiosInstance";
 
 interface PostRequest {
@@ -13,5 +13,12 @@ export const getPosts = async ({
   const { data } = await axiosInstance.get<PostList>(
     `/posts/category?category=${category}&page=${pageParam}&sortOption=NEWEST_FIRST`,
   );
+  return data;
+};
+
+export const createPost = async (
+  body: Pick<Post, "title" | "content" | "images" | "anonymous" | "category">,
+): Promise<Post> => {
+  const { data } = await axiosInstance.post("/posts", body);
   return data;
 };
