@@ -1,5 +1,6 @@
 import { getMe, logout, postLogin } from "@/api/auth";
 import { queryClient } from "@/api/queryClient";
+import { queryKeys } from "@/constants/queryKeys";
 import { useSetLogout } from "@/store/authStore";
 import { User } from "@/types";
 import { logOnDev } from "@/utils/logOnDev";
@@ -17,7 +18,9 @@ export function useLogin() {
     onSuccess: async ({ accessToken, refreshToken }) => {
       await saveSecureStore("accessToken", accessToken);
       await saveSecureStore("refreshToken", refreshToken);
-      queryClient.invalidateQueries({ queryKey: ["auth", "getMe"] });
+      queryClient.invalidateQueries({
+        queryKey: [queryKeys.AUTH, queryKeys.GET_ME],
+      });
       logOnDev("로그인 성공!");
     },
     onError: (error) => {
@@ -35,7 +38,7 @@ export function useLogout() {
       await deleteSecureStore("accessToken"); //토큰 삭제
       await deleteSecureStore("refreshToken"); //토큰 삭제
       setLogout(); // 전역 초기화
-      queryClient.resetQueries({ queryKey: ["auth"] }); //쿼리 키 무효화
+      queryClient.resetQueries({ queryKey: [queryKeys.AUTH] }); //쿼리 키 무효화
       logOnDev("로그아웃");
     },
   });
@@ -52,7 +55,7 @@ export function useGetMe() {
       const data = await getMe();
       return data;
     },
-    queryKey: ["auth", "getMe"],
+    queryKey: [queryKeys.AUTH, queryKeys.GET_ME],
     retry: false,
     staleTime: 1000 * 60 * 10,
     refetchOnWindowFocus: false, // 사용자가 다른 앱을 보거나 홈 화면에 나갔다가 다시 앱으로 돌아왔을 때(앱이 포커스될 때), 데이터를 자동으로 새로고침하지 않는다.

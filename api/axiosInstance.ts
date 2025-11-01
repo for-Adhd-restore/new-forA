@@ -10,7 +10,6 @@ import { tokenRefresh } from "./tokenRefresh";
 
 export const axiosInstance = axios.create({
   baseURL: process.env.EXPO_PUBLIC_API_URL,
-  timeout: 5000,
 });
 
 axiosInstance.interceptors.request.use(
@@ -23,10 +22,8 @@ axiosInstance.interceptors.request.use(
     }
     logOnDev(`
     [interceptor]:
-      headers: ${config.headers},
       method: ${config.method},
       url: ${config.url},
-      baseUrl: ${config.baseURL},
       data: ${config.data},
       params: ${config.params},
         `);
