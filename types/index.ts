@@ -1,3 +1,5 @@
+import * as ImagePicker from "expo-image-picker";
+
 export interface User {
   email: string;
   nickname: string;
@@ -98,3 +100,8 @@ export interface PostList {
   postList: Post[];
   paging: Paging;
 }
+
+export type ImageData = Pick<
+  ImagePicker.ImagePickerAsset,
+  "uri" | "fileName" | "mimeType"
+>;
