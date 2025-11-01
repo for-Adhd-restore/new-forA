@@ -21,6 +21,21 @@ export default function PostLayout() {
           ),
         }}
       />
+      <Stack.Screen
+        name="[id]"
+        options={{
+          headerLeft: () => (
+            <Pressable
+              onPress={() =>
+                //상세 페이지 뒤로가기 딥 링크 대응 로직 추가
+                router.canGoBack() ? router.back() : router.replace("/today")
+              }
+            >
+              <Feather name="arrow-left" size={28} color={"black"} />
+            </Pressable>
+          ),
+        }}
+      />
     </Stack>
   );
 }
