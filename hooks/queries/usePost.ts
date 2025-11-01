@@ -1,6 +1,6 @@
 import { createPost } from "@/api/post";
 import { queryClient } from "@/api/queryClient";
-import { useMutation } from "@tanstack/react-query";
+import { queryKeys } from "@/constants/queryKeys";
 import { router } from "expo-router";
 
 export function useCreatePost() {
@@ -9,7 +9,7 @@ export function useCreatePost() {
     onSuccess: () => {
       router.replace("/(tabs)/today");
       queryClient.invalidateQueries({
-        queryKey: ["posts", "getPosts"],
+        queryKey: [queryKeys.POST, queryKeys.GET_POSTS],
       });
     },
   });
