@@ -1,29 +1,22 @@
 import { colors } from "@/constants/colors";
 import { Magazine } from "@/types";
-import Feather from "@expo/vector-icons/Feather";
+import { router } from "expo-router";
 import React from "react";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, View } from "react-native";
+import MagazineCardHeader from "./MagazineCardHeader";
 
 interface MagazineCardProps {
   magazine: Magazine;
 }
 
 function MagazineCard({ magazine }: MagazineCardProps) {
+  const handlePressMagazine = () => {
+    router.push(`/magazine/${magazine.id}`);
+  };
+
   return (
-    <Pressable style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.chapterText}>{magazine.chapter}</Text>
-        <Text style={styles.dateText}>{magazine.date}</Text>
-      </View>
-      <View style={styles.titleContainer}>
-        <View style={{ gap: 5 }}>
-          <Text style={styles.titleText}>{magazine.title}</Text>
-          <Text style={styles.subtitleText}>{magazine.subtitle}</Text>
-        </View>
-        <Pressable style={styles.bookmarkButton}>
-          <Feather name="bookmark" size={26} color="black" />
-        </Pressable>
-      </View>
+    <Pressable style={styles.container} onPress={handlePressMagazine}>
+      <MagazineCardHeader magazine={magazine} />
       <View style={styles.imageContainer}>
         {magazine.thumbnails.map((image) => (
           <Image
@@ -52,31 +45,6 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 4,
   },
-  chapterText: {
-    fontSize: 14,
-    color: colors.GREEN_400,
-    fontWeight: "bold",
-  },
-  headerContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  dateText: {
-    fontSize: 10,
-  },
-  titleContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  titleText: {
-    fontSize: 20,
-    color: colors.BLACK,
-    fontWeight: "bold",
-  },
-  subtitleText: {
-    fontSize: 14,
-  },
-  bookmarkButton: {},
   imageContainer: {
     flexDirection: "row",
     gap: 10,
