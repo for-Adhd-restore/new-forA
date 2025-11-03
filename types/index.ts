@@ -105,3 +105,20 @@ export type ImageData = Pick<
   ImagePicker.ImagePickerAsset,
   "uri" | "fileName" | "mimeType"
 >;
+
+// 매거진 타입
+
+export interface Magazine {
+  id: number;
+  chapter: string;
+  date: string;
+  title: string;
+  subtitle: string;
+  thumbnails: string[];
+  type: "type1" | "type4" | "type5";
+}
+
+export type MagazineDetail = Omit<Magazine, "thumbnails"> & {
+  author: string;
+  contents: string;
+};
