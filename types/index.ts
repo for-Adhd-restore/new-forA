@@ -115,7 +115,6 @@ export interface Magazine {
   title: string;
   subtitle: string;
   thumbnails: string[];
-  type: "type1" | "type4" | "type5";
 }
 
 export type MagazineDetail = Omit<Magazine, "thumbnails"> & {
