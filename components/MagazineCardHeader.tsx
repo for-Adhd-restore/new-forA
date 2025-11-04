@@ -1,8 +1,9 @@
 import { colors } from "@/constants/colors";
 import { Magazine } from "@/types";
+import { logOnDev } from "@/utils/logOnDev";
 import Feather from "@expo/vector-icons/Feather";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 interface MagazineTitleProps {
   magazine: Magazine;
@@ -14,7 +15,7 @@ function MagazineCardHeader({
   isDetail = false,
 }: MagazineTitleProps) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, isDetail && { marginTop: 20 }]}>
       <View style={[styles.headerContainer]}>
         <Text style={[styles.chapterText, isDetail && { fontSize: 18 }]}>
           {magazine.chapter}
@@ -33,9 +34,12 @@ function MagazineCardHeader({
           </Text>
         </View>
         {!isDetail && (
-          <View style={styles.bookmarkButton}>
+          <Pressable
+            style={styles.bookmarkButton}
+            onPress={() => logOnDev("북마크 클릭")}
+          >
             <Feather name="bookmark" size={26} color={colors.GREEN_400} />
-          </View>
+          </Pressable>
         )}
       </View>
     </View>
@@ -45,7 +49,6 @@ function MagazineCardHeader({
 const styles = StyleSheet.create({
   container: {
     gap: 12,
-    marginTop: 20,
   },
   chapterText: {
     fontSize: 14,
