@@ -1,19 +1,26 @@
 import MagazineCardHeader from "@/components/MagazineCardHeader";
-import { useLocalSearchParams } from "expo-router";
+import MagazineNavHeader from "@/components/MagazineNavHeader";
+import { useGetMagazine } from "@/hooks/queries/useMagazine";
+import { useLocalSearchParams, useNavigation } from "expo-router";
+import { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
-
-//TODO: 더미
-const magazine = {
-  id: 2,
-  chapter: "chapter 02",
-  date: "2025-11-03",
-  title: "기술의 발전",
-  subtitle: "최신 기술 트렌드를 탐구합니다.",
-  thumbnails: ["https://picsum.photos/id/1035/800/600"],
-};
 
 export default function MagazineDetailScreen() {
   const { id } = useLocalSearchParams();
+  const { data: magazine, isLoading, error } = useGetMagazine(Number(id));
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    if (!magazine) return;
+    navigation.setOptions({
+      header: () => <MagazineNavHeader magazine={magazine} />,
+    });
+  }, [navigation, magazine]);
+
+  if (isLoading) return null;
+  if (error) return null;
+  if (!magazine) return null;
+
   return (
     <View style={styles.container}>
       <MagazineCardHeader magazine={magazine} isDetail />

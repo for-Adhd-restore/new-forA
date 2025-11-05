@@ -12,9 +12,7 @@ export function useGetMagazineList() {
     queryFn: getMagazineList,
     queryKey: [queryKeys.MAGAZINE, queryKeys.GET_MAGAZINELIST],
     staleTime: 12 * 60 * 60 * 1000, // 12h 동안 fresh → 리마운트해도 리패치 X
-    gcTime: 48 * 60 * 60 * 1000,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
+    gcTime: 12 * 60 * 60 * 1000, // 캐시에서 데이터가 제거될 때까지의 시간
   });
 }
 
@@ -23,9 +21,7 @@ export function useGetMagazine(magazineId: number) {
     queryFn: () => getMagazine(magazineId),
     queryKey: [queryKeys.MAGAZINE, queryKeys.GET_MAGAZINE, magazineId],
     staleTime: 12 * 60 * 60 * 1000, // 24h 동안 fresh → 리마운트해도 리패치 X
-    gcTime: 48 * 60 * 60 * 1000,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
+    gcTime: 12 * 60 * 60 * 1000, // 캐시에서 데이터가 제거될 때까지의 시간
   });
 }
 

@@ -21,7 +21,7 @@ axiosInstance.interceptors.request.use(
       config.headers.set("Authorization", `Bearer ${accessToken}`);
     }
     logOnDev(`
-    [interceptor]:
+      [요청]:
       method: ${config.method},
       url: ${config.url},
       data: ${config.data},
@@ -38,8 +38,12 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   function (response: AxiosResponse) {
-    // 2xx 범위에 있는 상태 코드는 이 함수를 트리거 합니다.
-    // 응답 데이터가 있는 작업 수행
+    logOnDev(`
+      [응답]
+      status: ${response.status},
+      data: ${response.data},
+
+    `);
     return response;
   },
   async function (error: AxiosError) {

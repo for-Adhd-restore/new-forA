@@ -107,17 +107,26 @@ export type ImageData = Pick<
 >;
 
 // 매거진 타입
-
 export interface Magazine {
   id: number;
-  chapter: string;
-  date: string;
-  title: string;
-  subtitle: string;
-  thumbnails: string[];
+  chapterName: string;
+  mainTitle: string;
+  subTitle: string;
+  designType: number;
+  thumbnailImages: string[];
+  scrapCount: number;
+  isScrapped: boolean;
+  createdAt: string;
 }
 
-export type MagazineDetail = Omit<Magazine, "thumbnails"> & {
-  author: string;
-  contents: string;
+// 매거진 리스트
+export interface MagazineList {
+  magazines: Magazine[];
+  paging: Paging;
+}
+
+export type MagazineDetail = Omit<Magazine, "thumbnailImages"> & {
+  contentAuthor: string;
+  contentHtml: string;
+  contentImages: string[];
 };
