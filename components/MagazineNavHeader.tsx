@@ -1,12 +1,24 @@
 import { colors } from "@/constants/colors";
+import { useMagazineBookmark } from "@/hooks/queries/useMagazine";
+import { Magazine } from "@/types";
 import Feather from "@expo/vector-icons/Feather";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
 import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-function MagazineNavHeader() {
+interface MagazineNavHeaderProps {
+  magazine: Pick<Magazine, "id" | "isScrapped">;
+}
+
+function MagazineNavHeader({ magazine }: MagazineNavHeaderProps) {
   const inset = useSafeAreaInsets();
+  const bookmarkMutation = useMagazineBookmark(magazine.id);
+
+  const handleBookmark = () => {
+    bookmarkMutation.mutate();
+  };
 
   return (
     <View style={[styles.container, { marginTop: inset.top }]}>
@@ -17,8 +29,12 @@ function MagazineNavHeader() {
         <Pressable>
           <Feather name="upload" size={24} color={colors.GRAY_400} />
         </Pressable>
-        <Pressable>
-          <Feather name="bookmark" size={24} color={colors.GRAY_400} />
+        <Pressable onPress={handleBookmark}>
+          <Ionicons
+            name={magazine.isScrapped ? "bookmark" : "bookmark-outline"}
+            size={26}
+            color={colors.GREEN_400}
+          />
         </Pressable>
       </View>
     </View>
