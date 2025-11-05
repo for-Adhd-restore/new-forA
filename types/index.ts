@@ -125,7 +125,8 @@ export interface MagazineList {
   paging: Paging;
 }
 
-export type MagazineDetail = Omit<Magazine, "thumbnails"> & {
-  author: string;
-  contents: string;
+export type MagazineDetail = Omit<Magazine, "thumbnailImages"> & {
+  contentAuthor: string;
+  contentHtml: string;
+  contentImages: string[];
 };
