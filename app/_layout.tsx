@@ -1,5 +1,4 @@
 import { queryClient } from "@/api/queryClient";
-import MagazineNavHeader from "@/components/MagazineNavHeader";
 import { colors } from "@/constants/colors";
 import { useGetMe } from "@/hooks/queries/useAuth";
 import { useIsLogin, useSetLogin } from "@/store/authStore";
@@ -39,10 +38,7 @@ function RootNavigator() {
         <Stack.Screen name="post" options={{ headerShown: false }} />
         <Stack.Screen
           name="magazine/[id]"
-          options={{
-            header: () => <MagazineNavHeader />,
-            contentStyle: { backgroundColor: colors.GRAY_100 },
-          }}
+          options={{ contentStyle: { backgroundColor: colors.GRAY_100 } }}
         />
       </Stack.Protected>
       <Stack.Protected guard={!isLogin}>
