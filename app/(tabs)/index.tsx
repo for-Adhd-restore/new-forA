@@ -5,63 +5,6 @@ import Feather from "@expo/vector-icons/Feather";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const mockMagazines: Magazine[] = [
-  {
-    id: 1,
-    chapter: "chapter 01",
-    date: "2025-11-01",
-    title: "첫 번째 매거진: 시작",
-    subtitle: "새로운 여정의 시작을 알리며",
-    thumbnails: [
-      "https://picsum.photos/id/1003/800/600",
-      "https://picsum.photos/id/1011/800/600",
-    ],
-    type: "type1",
-  },
-  {
-    id: 2,
-    chapter: "chapter 02",
-    date: "2025-11-03",
-    title: "기술의 발전",
-    subtitle: "최신 기술 트렌드를 탐구합니다.",
-    thumbnails: ["https://picsum.photos/id/1035/800/600"],
-    type: "type4",
-  },
-  {
-    id: 3,
-    chapter: "chapter 03",
-    date: "2025-11-05",
-    title: "디자인 이야기",
-    subtitle: "사용자 경험(UX)의 중요성",
-    thumbnails: [
-      "https://picsum.photos/id/1043/800/600",
-      "https://picsum.photos/id/1050/800/600",
-    ],
-    type: "type4",
-  },
-  {
-    id: 4,
-    chapter: "chapter 04",
-    date: "2025-11-10",
-    title: "도시의 숨겨진 명소",
-    subtitle: "우리가 몰랐던 도시의 매력",
-    thumbnails: ["https://picsum.photos/id/1069/800/600"],
-    type: "type4",
-  },
-  {
-    id: 5,
-    chapter: "chapter 05",
-    date: "2025-11-15",
-    title: "미래를 향한 준비",
-    subtitle: "다음 10년을 위한 로드맵",
-    thumbnails: [
-      "https://picsum.photos/id/1074/800/600",
-      "https://picsum.photos/id/1084/800/600",
-    ],
-    type: "type4",
-  },
-];
-
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container} edges={["top"]}>
