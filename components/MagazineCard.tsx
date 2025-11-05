@@ -18,9 +18,9 @@ function MagazineCard({ magazine }: MagazineCardProps) {
     <Pressable style={styles.container} onPress={handlePressMagazine}>
       <MagazineCardHeader magazine={magazine} />
       <View style={styles.imageContainer}>
-        {magazine.thumbnailImages.map((image) => (
+        {magazine.thumbnailImages.map((image, idx) => (
           <Image
-            key={image}
+            key={idx}
             source={{ uri: image }}
             style={styles.image}
             resizeMode="cover"
