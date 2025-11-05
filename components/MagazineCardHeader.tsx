@@ -1,7 +1,7 @@
 import { colors } from "@/constants/colors";
+import { useMagazineBookmark } from "@/hooks/queries/useMagazine";
 import { Magazine } from "@/types";
-import { logOnDev } from "@/utils/logOnDev";
-import Feather from "@expo/vector-icons/Feather";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
@@ -17,6 +17,11 @@ function MagazineCardHeader({
   magazine,
   isDetail = false,
 }: MagazineTitleProps) {
+  const bookmarkMutation = useMagazineBookmark(magazine.id);
+
+  const handleBookmark = () => {
+    bookmarkMutation.mutate();
+  };
   return (
     <View style={[styles.container, isDetail && { marginTop: 20 }]}>
       <View style={[styles.headerContainer]}>
@@ -37,11 +42,12 @@ function MagazineCardHeader({
           </Text>
         </View>
         {!isDetail && (
-          <Pressable
-            style={styles.bookmarkButton}
-            onPress={() => logOnDev("북마크 클릭")}
-          >
-            <Feather name="bookmark" size={26} color={colors.GREEN_400} />
+          <Pressable style={styles.bookmarkButton} onPress={handleBookmark}>
+            <Ionicons
+              name={magazine.isScrapped ? "bookmark" : "bookmark-outline"}
+              size={26}
+              color={colors.GREEN_400}
+            />
           </Pressable>
         )}
       </View>

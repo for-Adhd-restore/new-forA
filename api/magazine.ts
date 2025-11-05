@@ -17,10 +17,8 @@ export const getMagazine = async (
 };
 
 export const postMagazineBookmark = async (
-  magizineId: number,
-): Promise<void> => {
-  const { data } = await axiosInstance.post(
-    `/magazines/${magizineId}/bookmark`,
-  );
+  magazineId: number,
+): Promise<boolean> => {
+  const { data } = await axiosInstance.post(`/magazines/${magazineId}/scrap`);
   return data;
 };
