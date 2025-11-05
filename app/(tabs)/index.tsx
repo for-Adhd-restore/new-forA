@@ -1,11 +1,13 @@
 import MagazineCard from "@/components/MagazineCard";
 import { colors } from "@/constants/colors";
-import { Magazine } from "@/types";
+import { useGetMagazineList } from "@/hooks/queries/useMagazine";
 import Feather from "@expo/vector-icons/Feather";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
+  const { data: magazineList } = useGetMagazineList();
+
   return (
     <SafeAreaView style={styles.container} edges={["top"]}>
       <View style={styles.textContainer}>
@@ -27,7 +29,7 @@ export default function HomeScreen() {
         contentContainerStyle={styles.scrollContainer}
         showsVerticalScrollIndicator={false}
       >
-        {mockMagazines.map((item) => (
+        {magazineList?.map((item) => (
           <MagazineCard key={item.id} magazine={item} />
         ))}
         <View style={styles.footerContainer}>

@@ -18,7 +18,7 @@ function MagazineCard({ magazine }: MagazineCardProps) {
     <Pressable style={styles.container} onPress={handlePressMagazine}>
       <MagazineCardHeader magazine={magazine} />
       <View style={styles.imageContainer}>
-        {magazine.thumbnails.map((image) => (
+        {magazine.thumbnailImages.map((image) => (
           <Image
             key={image}
             source={{ uri: image }}
@@ -50,8 +50,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   image: {
-    width: "100%",
-    aspectRatio: 16 / 12,
+    height: 150,
     borderRadius: 10,
     flex: 1,
   },
