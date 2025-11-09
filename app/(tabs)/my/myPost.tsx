@@ -1,15 +1,16 @@
 import CategoryButtonList from "@/components/CategoryButtonList";
 import InfiniteList from "@/components/common/InfiniteList";
 import FeedItem from "@/components/FeedItem";
-import { useGetInfinitePosts } from "@/hooks/queries/useGetInfinitePosts";
+import MyPostEmpty from "@/components/my/MyPostEmpty";
+import { useGetInfiniteMyPosts } from "@/hooks/queries/useGetInfinitePosts";
 import { Post, PostCategory } from "@/types";
-import { Link } from "expo-router";
 import { useState } from "react";
-import { Image, Pressable, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
-export default function TodayScreen() {
+export default function MyPostScreen() {
   const [selectedCategory, setSelectedCategory] =
     useState<PostCategory>("TWENTIES");
+
   const {
     data,
     error,
@@ -17,7 +18,8 @@ export default function TodayScreen() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useGetInfinitePosts(selectedCategory);
+  } = useGetInfiniteMyPosts(selectedCategory);
+
   // 페이지 풀기
   //TODO: 나중에 util로 빼야 하나?
   const flatPosts: Post[] =
@@ -26,6 +28,7 @@ export default function TodayScreen() {
   return (
     <View style={styles.container}>
       <CategoryButtonList setSelectedCategory={setSelectedCategory} />
+
       <InfiniteList
         data={flatPosts}
         error={error}
@@ -35,37 +38,14 @@ export default function TodayScreen() {
         isFetchingNextPage={isFetchingNextPage}
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => <FeedItem post={item} />}
+        ListEmptyComponent={MyPostEmpty}
       />
-      <Link href={"/post/write"} asChild>
-        <Pressable style={styles.writeButton}>
-          <Image
-            source={require("@/assets/images/write.png")}
-            style={styles.writeImg}
-          />
-        </Pressable>
-      </Link>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    borderWidth: 1,
-  },
-  writeButton: {
-    position: "absolute",
-    bottom: 20,
-    right: 20,
-    width: 70,
-    height: 70,
-
-    borderRadius: 50,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  writeImg: {
-    width: 100, // 예시 크기
-    height: 100, // 예시 크기
+    flex: 1, // 화면을 꽉 채우기 위해서
   },
 });

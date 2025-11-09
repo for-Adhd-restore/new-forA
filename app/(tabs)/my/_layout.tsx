@@ -21,6 +21,13 @@ export default function MyLayout() {
           ),
         }}
       />
+      <Stack.Screen
+        name="myPost"
+        options={{
+          title: "나의 글",
+          contentStyle: { backgroundColor: colors.WHITE },
+        }}
+      />
     </Stack>
   );
 }

@@ -1,5 +1,6 @@
 import { colors } from "@/constants/colors";
 import { useLogout } from "@/hooks/queries/useAuth";
+import { router } from "expo-router";
 import {
   Image,
   Pressable,
@@ -35,7 +36,10 @@ export default function MyScreen() {
       </View>
 
       <View style={styles.myButtonContainer}>
-        <Pressable style={styles.buttonBox}>
+        <Pressable
+          style={styles.buttonBox}
+          onPress={() => router.push("/(tabs)/my/myPost")}
+        >
           <Image
             style={styles.buttonImage}
             source={require("@/assets/images/forA-mypage-mywrite.png")}

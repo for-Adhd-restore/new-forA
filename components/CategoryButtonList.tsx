@@ -1,3 +1,4 @@
+import { colors } from "@/constants/colors";
 import { PostCategory } from "@/types";
 import React from "react";
 import { StyleSheet, View } from "react-native";
@@ -31,6 +32,9 @@ const styles = StyleSheet.create({
   categoryContainer: {
     flexDirection: "row",
     gap: 10,
+    backgroundColor: colors.WHITE,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
   },
 });
 
