@@ -4,6 +4,7 @@ export const queryKeys = {
   POST: "post",
   GET_POSTS: "getPosts",
   GET_POST: "getPost",
+  GET_MY_POSTS: "getMyPosts",
 
   MAGAZINE: "magazine",
   GET_MAGAZINELIST: "getMagazineList",
