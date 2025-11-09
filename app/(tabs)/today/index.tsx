@@ -1,6 +1,8 @@
 import CategoryButtonList from "@/components/CategoryButtonList";
-import FeedList from "@/components/FeedList";
-import { PostCategory } from "@/types";
+import InfiniteList from "@/components/common/InfiniteList";
+import FeedItem from "@/components/FeedItem";
+import { useGetInfinitePosts } from "@/hooks/queries/useGetInfinitePosts";
+import { Post, PostCategory } from "@/types";
 import { Link } from "expo-router";
 import { useState } from "react";
 import { Image, Pressable, StyleSheet, View } from "react-native";
@@ -8,11 +10,32 @@ import { Image, Pressable, StyleSheet, View } from "react-native";
 export default function TodayScreen() {
   const [selectedCategory, setSelectedCategory] =
     useState<PostCategory>("TWENTIES");
+  const {
+    data,
+    error,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useGetInfinitePosts(selectedCategory);
+  // 페이지 풀기
+  //TODO: 나중에 util로 빼야 하나?
+  const flatPosts: Post[] =
+    data?.pages.map((item) => item.postList).flat() ?? [];
 
   return (
     <View style={styles.container}>
       <CategoryButtonList setSelectedCategory={setSelectedCategory} />
-      <FeedList selectedCategory={selectedCategory} />
+      <InfiniteList
+        data={flatPosts}
+        error={error}
+        isLoading={isLoading}
+        fetchNextPage={fetchNextPage}
+        hasNextPage={hasNextPage}
+        isFetchingNextPage={isFetchingNextPage}
+        keyExtractor={(item) => String(item.id)}
+        renderItem={({ item }) => <FeedItem post={item} />}
+      />
       <Link href={"/post/write"} asChild>
         <Pressable style={styles.writeButton}>
           <Image
