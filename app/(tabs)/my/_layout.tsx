@@ -28,6 +28,13 @@ export default function MyLayout() {
           contentStyle: { backgroundColor: colors.WHITE },
         }}
       />
+      <Stack.Screen
+        name="myComment"
+        options={{
+          title: "나의 댓글",
+          contentStyle: { backgroundColor: colors.WHITE },
+        }}
+      />
     </Stack>
   );
 }
