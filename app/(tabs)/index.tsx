@@ -1,4 +1,4 @@
-import MagazineCard from "@/components/MagazineCard";
+import MagazineCard from "@/components/magazine/MagazineCard";
 import { colors } from "@/constants/colors";
 import { useGetMagazineList } from "@/hooks/queries/useMagazine";
 import Feather from "@expo/vector-icons/Feather";

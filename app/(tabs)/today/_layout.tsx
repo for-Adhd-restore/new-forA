@@ -1,4 +1,4 @@
-import TodayHeader from "@/components/TodayHeader";
+import TodayHeader from "@/components/today/TodayHeader";
 import { colors } from "@/constants/colors";
 import { Stack } from "expo-router";
 
