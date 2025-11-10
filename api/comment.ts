@@ -1,5 +1,5 @@
 import { PostList } from "@/types";
-import { axiosInstance } from "./axiosInstance";
+import { axiosInstance } from "../lib/axiosInstance";
 
 export const getMyComments = async (pageParam: number): Promise<PostList> => {
   const { data } = await axiosInstance.get<PostList>("/comments/my-comments", {

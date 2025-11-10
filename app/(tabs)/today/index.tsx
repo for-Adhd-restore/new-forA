@@ -1,6 +1,6 @@
-import CategoryButtonList from "@/components/CategoryButtonList";
 import InfiniteList from "@/components/common/InfiniteList";
-import FeedItem from "@/components/FeedItem";
+import CategoryButtonList from "@/components/post/CategoryButtonList";
+import FeedItem from "@/components/post/FeedItem";
 import { useGetInfinitePosts } from "@/hooks/queries/useGetInfinitePosts";
 import { Post, PostCategory } from "@/types";
 import { Link } from "expo-router";

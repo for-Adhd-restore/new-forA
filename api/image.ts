@@ -1,5 +1,5 @@
 import { ImageData } from "@/types";
-import { axiosInstance } from "./axiosInstance";
+import { axiosInstance } from "../lib/axiosInstance";
 
 export const uploadImages = async (
   imageUris: ImageData[],

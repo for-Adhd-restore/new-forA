@@ -1,6 +1,6 @@
 import InfiniteList from "@/components/common/InfiniteList";
-import FeedItem from "@/components/FeedItem";
 import MyCommentEmpty from "@/components/my/MyCommentEmpty";
+import FeedItem from "@/components/post/FeedItem";
 import { useGetInfiniteMyComments } from "@/hooks/queries/useGetInfiniteComments";
 import { Post } from "@/types";
 import { StyleSheet, View } from "react-native";

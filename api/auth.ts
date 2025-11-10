@@ -1,5 +1,5 @@
 import { User } from "@/types";
-import { axiosInstance } from "./axiosInstance";
+import { axiosInstance } from "../lib/axiosInstance";
 
 //TODO: 타입 정리
 type RequestUser = {

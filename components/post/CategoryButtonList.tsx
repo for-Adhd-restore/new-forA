@@ -2,7 +2,7 @@ import { colors } from "@/constants/colors";
 import { PostCategory } from "@/types";
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import CustomButton from "./CustomButton";
+import CustomButton from "../common/CustomButton";
 
 interface CategoryButtonListProps {
   setSelectedCategory: (category: PostCategory) => void;

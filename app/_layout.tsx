@@ -1,6 +1,6 @@
-import { queryClient } from "@/api/queryClient";
 import { colors } from "@/constants/colors";
 import { useGetMe } from "@/hooks/queries/useAuth";
+import { queryClient } from "@/lib/queryClient";
 import { useIsLogin, useSetLogin } from "@/store/authStore";
 import { logOnDev } from "@/utils/logOnDev";
 import { QueryClientProvider } from "@tanstack/react-query";

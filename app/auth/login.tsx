@@ -1,5 +1,5 @@
-import EmailInput from "@/components/EmailInput";
-import PasswordInput from "@/components/PasswordInput";
+import EmailInput from "@/components/auth/EmailInput";
+import PasswordInput from "@/components/auth/PasswordInput";
 import { useLogin } from "@/hooks/queries/useAuth";
 import { Link } from "expo-router";
 import { FormProvider, useForm } from "react-hook-form";

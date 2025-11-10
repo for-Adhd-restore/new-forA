@@ -1,5 +1,5 @@
-import MagazineCardHeader from "@/components/MagazineCardHeader";
-import MagazineNavHeader from "@/components/MagazineNavHeader";
+import MagazineCardHeader from "@/components/magazine/MagazineCardHeader";
+import MagazineNavHeader from "@/components/magazine/MagazineNavHeader";
 import { useGetMagazine } from "@/hooks/queries/useMagazine";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useEffect } from "react";

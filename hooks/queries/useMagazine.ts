@@ -3,8 +3,8 @@ import {
   getMagazineList,
   postMagazineBookmark,
 } from "@/api/magazine";
-import { queryClient } from "@/api/queryClient";
 import { queryKeys } from "@/constants/queryKeys";
+import { queryClient } from "@/lib/queryClient";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export function useGetMagazineList() {

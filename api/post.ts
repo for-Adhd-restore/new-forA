@@ -1,5 +1,5 @@
 import { Post, PostCategory, PostList } from "@/types";
-import { axiosInstance } from "./axiosInstance";
+import { axiosInstance } from "../lib/axiosInstance";
 
 interface PostRequest {
   category: PostCategory;

@@ -1,4 +1,4 @@
-import ImagePreviewList from "@/components/ImagePreviewList";
+import ImagePreviewList from "@/components/post/ImagePreviewList";
 import { colors } from "@/constants/colors";
 import { ImageData } from "@/types";
 import * as ImagePicker from "expo-image-picker";
