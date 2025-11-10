@@ -1,5 +1,5 @@
 import { Magazine, MagazineDetail } from "@/types";
-import { axiosInstance } from "./axiosInstance";
+import { axiosInstance } from "../lib/axiosInstance";
 
 export const getMagazineList = async (): Promise<Magazine[]> => {
   const { data } = await axiosInstance.get("/magazines/all", {

@@ -1,6 +1,6 @@
 import { getMe, logout, postLogin } from "@/api/auth";
-import { queryClient } from "@/api/queryClient";
 import { queryKeys } from "@/constants/queryKeys";
+import { queryClient } from "@/lib/queryClient";
 import { useSetLogout } from "@/store/authStore";
 import { User } from "@/types";
 import { logOnDev } from "@/utils/logOnDev";

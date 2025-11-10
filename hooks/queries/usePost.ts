@@ -1,6 +1,6 @@
 import { createPost, getPost } from "@/api/post";
-import { queryClient } from "@/api/queryClient";
 import { queryKeys } from "@/constants/queryKeys";
+import { queryClient } from "@/lib/queryClient";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { router } from "expo-router";
 
