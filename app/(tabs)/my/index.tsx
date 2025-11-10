@@ -46,7 +46,10 @@ export default function MyScreen() {
           />
           <Text style={styles.buttonText}>나의 글</Text>
         </Pressable>
-        <Pressable style={styles.buttonBox}>
+        <Pressable
+          style={styles.buttonBox}
+          onPress={() => router.push("/(tabs)/my/myComment")}
+        >
           <Image
             style={styles.buttonImage}
             source={require("@/assets/images/forA-mypage-mycomment.png")}
