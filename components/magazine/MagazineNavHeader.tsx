@@ -27,13 +27,13 @@ function MagazineNavHeader({ magazine }: MagazineNavHeaderProps) {
       </Pressable>
       <View style={styles.rightContainer}>
         <Pressable>
-          <Feather name="upload" size={24} color={colors.GRAY_400} />
+          <Feather name="upload" size={24} color={colors.GRAY[400]} />
         </Pressable>
         <Pressable onPress={handleBookmark}>
           <Ionicons
             name={magazine.isScrapped ? "bookmark" : "bookmark-outline"}
             size={26}
-            color={colors.GREEN_400}
+            color={colors.GREEN[400]}
           />
         </Pressable>
       </View>

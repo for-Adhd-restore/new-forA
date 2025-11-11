@@ -18,7 +18,7 @@ function MyCommentEmpty() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.GRAY_200,
+    backgroundColor: colors.GRAY[200],
   },
   emptyContainer: {
     margin: "auto",

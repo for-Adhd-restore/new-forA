@@ -46,7 +46,7 @@ function MagazineCardHeader({
             <Ionicons
               name={magazine.isScrapped ? "bookmark" : "bookmark-outline"}
               size={26}
-              color={colors.GREEN_400}
+              color={colors.GREEN[400]}
             />
           </Pressable>
         )}
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   chapterText: {
     fontSize: 14,
-    color: colors.GREEN_400,
+    color: colors.GREEN[400],
     fontWeight: "bold",
   },
   headerContainer: {
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   },
   subtitleText: {
     fontSize: 14,
-    color: colors.GRAY_400,
+    color: colors.GRAY[400],
   },
   bookmarkButton: {},
 });

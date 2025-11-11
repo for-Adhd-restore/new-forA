@@ -59,7 +59,7 @@ export default function WriteScreen() {
       {/* TODO: 제출 버튼은 헤더 오른쪽에 추가 */}
       <Pressable
         onPress={handleSubmitPost}
-        style={{ padding: 10, backgroundColor: colors.GRAY_200 }}
+        style={{ padding: 10, backgroundColor: colors.GRAY[200] }}
       >
         <Text>제출</Text>
       </Pressable>

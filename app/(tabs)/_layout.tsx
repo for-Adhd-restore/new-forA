@@ -8,7 +8,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: colors.GREEN_400,
+        tabBarActiveTintColor: colors.GREEN[400],
         tabBarLabelStyle: { fontSize: 14 },
       }}
     >

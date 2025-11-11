@@ -7,7 +7,7 @@ export default function MyLayout() {
     <Stack
       screenOptions={{
         headerShadowVisible: false,
-        contentStyle: { backgroundColor: colors.GRAY_200 },
+        contentStyle: { backgroundColor: colors.GRAY[200] },
       }}
     >
       <Stack.Screen

@@ -38,7 +38,7 @@ function RootNavigator() {
         <Stack.Screen name="post" options={{ headerShown: false }} />
         <Stack.Screen
           name="magazine/[id]"
-          options={{ contentStyle: { backgroundColor: colors.GRAY_100 } }}
+          options={{ contentStyle: { backgroundColor: colors.GRAY[100] } }}
         />
       </Stack.Protected>
       <Stack.Protected guard={!isLogin}>

@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   emailText: {
-    color: colors.GRAY_300,
+    color: colors.GRAY[300],
     fontSize: 16,
   },
   profileImage: {
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 100,
     height: 100,
-    borderColor: colors.GRAY_200,
+    borderColor: colors.GRAY[200],
   },
   myButtonContainer: {
     backgroundColor: colors.WHITE,
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   legalText: {
-    color: colors.GRAY_400,
+    color: colors.GRAY[400],
     fontWeight: "400",
     fontSize: 13,
   },
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     gap: 30,
   },
   footerText: {
-    color: colors.GRAY_400,
+    color: colors.GRAY[400],
     fontSize: 12,
     lineHeight: 15,
   },
