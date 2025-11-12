@@ -31,7 +31,7 @@ function InputField({
             error && styles.errorInput,
             isValid && styles.isVaildInput,
           ]}
-          placeholderTextColor={colors.GRAY[400]}
+          placeholderTextColor={colors.GRAY[300]}
           autoCapitalize="none" // 자동 대문자 제거
           spellCheck={false} // 입력값에 대한 맞춤법 검사 끄기
           autoCorrect={false} //입력값 자동 교정(오타 수정)을 끄기
@@ -51,17 +51,17 @@ function InputField({
 
 const styles = StyleSheet.create({
   label: {
-    color: colors.GRAY[400],
-    fontSize: 16,
+    color: colors.GRAY[600],
+    fontSize: 14,
   },
   container: {
-    height: 50,
+    height: 45,
     justifyContent: "center",
   },
   input: {
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
     fontSize: 16,
-    borderBottomColor: colors.GRAY[400],
+    borderBottomColor: colors.GRAY[600],
     paddingVertical: 8,
   },
   errorInput: {
