@@ -35,6 +35,21 @@ export default function MyLayout() {
           contentStyle: { backgroundColor: colors.WHITE },
         }}
       />
+      <Stack.Screen
+        name="setting"
+        options={{
+          title: "계정 설정",
+          contentStyle: { backgroundColor: colors.GRAY[200] },
+        }}
+      />
+      <Stack.Screen
+        name="changePassword"
+        options={{
+          title: "비밀번호 변경",
+          contentStyle: { backgroundColor: colors.WHITE },
+          headerBackButtonDisplayMode: "minimal",
+        }}
+      />
     </Stack>
   );
 }
