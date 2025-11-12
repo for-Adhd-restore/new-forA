@@ -37,3 +37,7 @@ type ChangePasswordProps = {
 export const changePassword = async (body: ChangePasswordProps) => {
   await axiosInstance.put("/user/password", body);
 };
+
+export const deleteUser = async () => {
+  await axiosInstance.delete("/user/withdraw");
+};

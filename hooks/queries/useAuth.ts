@@ -1,4 +1,10 @@
-import { changePassword, getMe, logout, postLogin } from "@/api/auth";
+import {
+  changePassword,
+  deleteUser,
+  getMe,
+  logout,
+  postLogin,
+} from "@/api/auth";
 import { queryKeys } from "@/constants/queryKeys";
 import { queryClient } from "@/lib/queryClient";
 import { useSetLogout } from "@/store/authStore";
@@ -69,5 +75,11 @@ export function useGetMe() {
 export function useChangePassword() {
   return useMutation({
     mutationFn: changePassword,
+  });
+}
+
+export function useDeleteUser() {
+  return useMutation({
+    mutationFn: deleteUser,
   });
 }
