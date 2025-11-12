@@ -25,3 +25,15 @@ export const getMe = async (): Promise<User> => {
   const { data } = await axiosInstance.get("/user");
   return data;
 };
+
+type ChangePasswordProps = {
+  prevPassword: string;
+  password: {
+    password: string;
+    passwordConfirm: string;
+  };
+};
+
+export const changePassword = async (body: ChangePasswordProps) => {
+  await axiosInstance.put("/user/password", body);
+};

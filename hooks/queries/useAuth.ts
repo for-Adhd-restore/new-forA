@@ -1,4 +1,4 @@
-import { getMe, logout, postLogin } from "@/api/auth";
+import { changePassword, getMe, logout, postLogin } from "@/api/auth";
 import { queryKeys } from "@/constants/queryKeys";
 import { queryClient } from "@/lib/queryClient";
 import { useSetLogout } from "@/store/authStore";
@@ -64,4 +64,10 @@ export function useGetMe() {
   });
 
   return { user, isSuccess };
+}
+
+export function useChangePassword() {
+  return useMutation({
+    mutationFn: changePassword,
+  });
 }
