@@ -44,7 +44,7 @@ export default function LoginScreen() {
         <View style={styles.mainContainer}>
           <View style={styles.formContainer}>
             <EmailInput />
-            <PasswordInput />
+            <PasswordInput label="비밀번호" valueName="password" />
           </View>
           <Pressable onPress={loginForm.handleSubmit(handleLogin)}>
             <Text>로그인 버튼</Text>
