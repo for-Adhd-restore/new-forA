@@ -46,11 +46,15 @@ export default function MyScreen() {
     >
       <View style={styles.topContainer}>
         <View style={styles.profileContainer}>
-          <Image
-            style={styles.profileImage}
-            source={require("@/assets/images/react-logo.png")}
-            resizeMode="contain"
-          />
+          <View style={styles.profileImageContainer}>
+            {user?.profileImage && (
+              <Image
+                style={styles.profileImage}
+                source={{ uri: user?.profileImage }}
+                resizeMode="contain"
+              />
+            )}
+          </View>
           <Text style={styles.nameText}>{`${user?.nickname} 님`}</Text>
           <Text style={styles.emailText}>{user?.email}</Text>
         </View>
@@ -150,7 +154,7 @@ const styles = StyleSheet.create({
     color: colors.GRAY[300],
     fontSize: 16,
   },
-  profileImage: {
+  profileImageContainer: {
     borderWidth: 1,
     borderRadius: 50,
     alignItems: "center",
@@ -158,6 +162,10 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderColor: colors.GRAY[200],
+  },
+  profileImage: {
+    width: "100%",
+    height: "100%",
   },
   myButtonContainer: {
     backgroundColor: colors.WHITE,
