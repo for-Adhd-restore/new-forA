@@ -1,6 +1,10 @@
+import Separator from "@/components/common/Separator";
+import PolicyModal from "@/components/my/PolicyModal";
 import { colors } from "@/constants/colors";
+import { PolicyKey } from "@/constants/policies";
 import { useUser } from "@/store/authStore";
 import { router } from "expo-router";
+import { useState } from "react";
 import {
   Image,
   Pressable,
@@ -14,6 +18,23 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 export default function MyScreen() {
   const insets = useSafeAreaInsets();
   const user = useUser();
+  const [policyModal, setPolicyModal] = useState<{
+    visible: boolean;
+    key: PolicyKey | null;
+  }>({
+    visible: false,
+    key: null,
+  });
+
+  // 모달 여는 핸들러
+  const openPolicyModal = (key: PolicyKey) => {
+    setPolicyModal({ visible: true, key: key });
+  };
+
+  // 모달 닫는 핸들러
+  const closePolicyMoal = () => {
+    setPolicyModal({ visible: false, key: null });
+  };
 
   return (
     <ScrollView
@@ -73,9 +94,13 @@ export default function MyScreen() {
       </Pressable>
 
       <View style={styles.legalContainer}>
-        <Text style={styles.legalText}>이용약관</Text>
-
-        <Text style={styles.legalText}>개인정보처리방침</Text>
+        <Pressable onPress={() => openPolicyModal("tos")}>
+          <Text style={styles.legalText}>이용약관</Text>
+        </Pressable>
+        <Separator />
+        <Pressable onPress={() => openPolicyModal("privacy")}>
+          <Text style={styles.legalText}>개인정보처리방침</Text>
+        </Pressable>
       </View>
       <View style={styles.footerContainer}>
         <Image source={require("@/assets/images/forA-mypage-footer.png")} />
@@ -92,6 +117,11 @@ export default function MyScreen() {
           자사의 사이트의 무단적인 수집을 엄격히 금합니다.
         </Text>
       </View>
+      <PolicyModal
+        visible={policyModal.visible}
+        polickyKey={policyModal.key}
+        onClose={closePolicyMoal}
+      />
     </ScrollView>
   );
 }
