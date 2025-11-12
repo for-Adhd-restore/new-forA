@@ -1,30 +1,38 @@
+import { colors } from "@/constants/colors";
 import React from "react";
 import { Pressable, PressableProps, StyleSheet, Text } from "react-native";
 
 interface CustomButtonProps extends PressableProps {
   label: string;
+  isValid?: boolean;
 }
 
-function CustomButton({ label, ...props }: CustomButtonProps) {
+function CustomButton({ label, isValid = false, ...props }: CustomButtonProps) {
   return (
     <Pressable
-      style={styles.container}
-      {...props} // onPress전달
+      style={[
+        styles.container,
+        isValid && { backgroundColor: colors.GREEN[400] },
+      ]}
+      {...props}
     >
-      <Text style={styles.labelText}>{label}</Text>
+      <Text style={[styles.label, isValid && { color: colors.WHITE }]}>
+        {label}
+      </Text>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 1,
-    borderRadius: 20,
-    paddingHorizontal: 16,
-    paddingVertical: 8,
+    paddingVertical: 16,
+    borderRadius: 8,
+    alignItems: "center",
+    backgroundColor: colors.GRAY[200],
   },
-  labelText: {
-    fontSize: 12,
+
+  label: {
+    fontSize: 16,
   },
 });
 

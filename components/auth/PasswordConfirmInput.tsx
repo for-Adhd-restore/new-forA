@@ -1,15 +1,16 @@
 import { REGEX } from "@/constants/valid";
 import React from "react";
-import { Controller, useFormContext } from "react-hook-form";
+import { Controller, useFormContext, useWatch } from "react-hook-form";
 import InputField from "../common/InputField";
 
-interface PasswordInputProps {
+interface PasswordConfrimInputProps {
   label: string;
   valueName: string;
 }
 
-function PasswordInput({ label, valueName }: PasswordInputProps) {
+function PasswordConfirmInput({ label, valueName }: PasswordConfrimInputProps) {
   const { control } = useFormContext();
+  const password = useWatch({ control, name: "password" });
 
   return (
     <Controller
@@ -44,9 +45,14 @@ function PasswordInput({ label, valueName }: PasswordInputProps) {
           value: REGEX.PASSWORD,
           message: "영문, 숫자, 특수문자 조합으로 입력해주세요.",
         },
+        validate: (data: string) => {
+          if (data !== password) {
+            return "비밀번호가 일치하지 않습니다.";
+          }
+        },
       }}
     />
   );
 }
 
-export default PasswordInput;
+export default PasswordConfirmInput;

@@ -11,12 +11,12 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container} edges={["top"]}>
       <View style={styles.textContainer}>
-        <Text style={[styles.titleText, { color: colors.GREEN_400 }]}>
+        <Text style={[styles.titleText, { color: colors.GREEN[400] }]}>
           난 왜 이렇게 행동할까
         </Text>
         <Text style={styles.titleText}>포에이 매거진</Text>
         <View style={styles.descriptionContainer}>
-          <Feather name="alert-circle" size={11} color={colors.GRAY_500} />
+          <Feather name="alert-circle" size={11} color={colors.GRAY[500]} />
           <Text style={styles.descriptionText}>
             이유를 몰라서 자책했던 순간들, 이젠 우리 뇌의 방식으로 이해해요.
             {"\n"}
@@ -36,7 +36,7 @@ export default function HomeScreen() {
           <Text
             style={[
               styles.footerText,
-              { color: colors.GRAY_500, fontWeight: "bold" },
+              { color: colors.GRAY[500], fontWeight: "bold" },
             ]}
           >
             © 2025 forA, Inc. All rights reserved.
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     fontSize: 11,
-    color: colors.GRAY_500,
+    color: colors.GRAY[500],
   },
   scrollContainer: {
     gap: 15,
@@ -82,6 +82,6 @@ const styles = StyleSheet.create({
   },
   footerText: {
     fontSize: 12,
-    color: colors.GRAY_400,
+    color: colors.GRAY[400],
   },
 });

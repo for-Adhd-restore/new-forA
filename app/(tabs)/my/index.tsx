@@ -1,6 +1,10 @@
+import Separator from "@/components/common/Separator";
+import PolicyModal from "@/components/my/PolicyModal";
 import { colors } from "@/constants/colors";
-import { useLogout } from "@/hooks/queries/useAuth";
+import { PolicyKey } from "@/constants/policies";
+import { useUser } from "@/store/authStore";
 import { router } from "expo-router";
+import { useState } from "react";
 import {
   Image,
   Pressable,
@@ -12,8 +16,25 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function MyScreen() {
-  const logoutMutation = useLogout();
   const insets = useSafeAreaInsets();
+  const user = useUser();
+  const [policyModal, setPolicyModal] = useState<{
+    visible: boolean;
+    key: PolicyKey | null;
+  }>({
+    visible: false,
+    key: null,
+  });
+
+  // 모달 여는 핸들러
+  const openPolicyModal = (key: PolicyKey) => {
+    setPolicyModal({ visible: true, key: key });
+  };
+
+  // 모달 닫는 핸들러
+  const closePolicyMoal = () => {
+    setPolicyModal({ visible: false, key: null });
+  };
 
   return (
     <ScrollView
@@ -25,13 +46,17 @@ export default function MyScreen() {
     >
       <View style={styles.topContainer}>
         <View style={styles.profileContainer}>
-          <Image
-            style={styles.profileImage}
-            source={require("@/assets/images/react-logo.png")}
-            resizeMode="contain"
-          />
-          <Text style={styles.nameText}>코코벤 님</Text>
-          <Text style={styles.emailText}>example@forA.com</Text>
+          <View style={styles.profileImageContainer}>
+            {user?.profileImage && (
+              <Image
+                style={styles.profileImage}
+                source={{ uri: user?.profileImage }}
+                resizeMode="contain"
+              />
+            )}
+          </View>
+          <Text style={styles.nameText}>{`${user?.nickname} 님`}</Text>
+          <Text style={styles.emailText}>{user?.email}</Text>
         </View>
       </View>
 
@@ -65,14 +90,21 @@ export default function MyScreen() {
         </Pressable>
       </View>
 
-      <Pressable style={styles.settingContainer}>
+      <Pressable
+        style={styles.settingContainer}
+        onPress={() => router.push("/(tabs)/my/setting")}
+      >
         <Text style={styles.settingText}>계정 설정</Text>
       </Pressable>
 
       <View style={styles.legalContainer}>
-        <Text style={styles.legalText}>이용약관</Text>
-
-        <Text style={styles.legalText}>개인정보처리방침</Text>
+        <Pressable onPress={() => openPolicyModal("tos")}>
+          <Text style={styles.legalText}>이용약관</Text>
+        </Pressable>
+        <Separator />
+        <Pressable onPress={() => openPolicyModal("privacy")}>
+          <Text style={styles.legalText}>개인정보처리방침</Text>
+        </Pressable>
       </View>
       <View style={styles.footerContainer}>
         <Image source={require("@/assets/images/forA-mypage-footer.png")} />
@@ -89,6 +121,11 @@ export default function MyScreen() {
           자사의 사이트의 무단적인 수집을 엄격히 금합니다.
         </Text>
       </View>
+      <PolicyModal
+        visible={policyModal.visible}
+        polickyKey={policyModal.key}
+        onClose={closePolicyMoal}
+      />
     </ScrollView>
   );
 }
@@ -114,17 +151,21 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   emailText: {
-    color: colors.GRAY_300,
+    color: colors.GRAY[300],
     fontSize: 16,
   },
-  profileImage: {
+  profileImageContainer: {
     borderWidth: 1,
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",
     width: 100,
     height: 100,
-    borderColor: colors.GRAY_200,
+    borderColor: colors.GRAY[200],
+  },
+  profileImage: {
+    width: "100%",
+    height: "100%",
   },
   myButtonContainer: {
     backgroundColor: colors.WHITE,
@@ -180,7 +221,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   legalText: {
-    color: colors.GRAY_400,
+    color: colors.GRAY[400],
     fontWeight: "400",
     fontSize: 13,
   },
@@ -190,7 +231,7 @@ const styles = StyleSheet.create({
     gap: 30,
   },
   footerText: {
-    color: colors.GRAY_400,
+    color: colors.GRAY[400],
     fontSize: 12,
     lineHeight: 15,
   },

@@ -28,18 +28,18 @@ function FeedItem({ post }: FeedItemProps) {
 
         <View style={styles.iconConatiner}>
           <View style={styles.iconBox}>
-            <Ionicons name="eye-outline" size={16} color={colors.GRAY_500} />
+            <Ionicons name="eye-outline" size={16} color={colors.GRAY[500]} />
             <Text>{post.viewCount}</Text>
           </View>
           <View style={styles.iconBox}>
-            <Feather name="thumbs-up" size={16} color={colors.GRAY_500} />
+            <Feather name="thumbs-up" size={16} color={colors.GRAY[500]} />
             <Text>{post.likeCount}</Text>
           </View>
           <View style={styles.iconBox}>
             <Ionicons
               name="chatbubble-ellipses-outline"
               size={16}
-              color={colors.GRAY_500}
+              color={colors.GRAY[500]}
             />
             <Text>{post.commentCount}</Text>
           </View>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: colors.WHITE,
     borderBottomWidth: 1,
-    borderBottomColor: colors.GRAY_300,
+    borderBottomColor: colors.GRAY[300],
     flexDirection: "row",
     justifyContent: "space-between",
   },
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   createAt: {
-    color: colors.GRAY_400,
+    color: colors.GRAY[400],
   },
 });
 
