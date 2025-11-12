@@ -1,5 +1,4 @@
 import { colors } from "@/constants/colors";
-import { useLogout } from "@/hooks/queries/useAuth";
 import { useUser } from "@/store/authStore";
 import { router } from "expo-router";
 import {
@@ -13,7 +12,6 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function MyScreen() {
-  const logoutMutation = useLogout();
   const insets = useSafeAreaInsets();
   const user = useUser();
 
