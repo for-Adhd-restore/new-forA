@@ -1,5 +1,6 @@
 import { colors } from "@/constants/colors";
 import { useLogout } from "@/hooks/queries/useAuth";
+import { useUser } from "@/store/authStore";
 import { router } from "expo-router";
 import {
   Image,
@@ -14,6 +15,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 export default function MyScreen() {
   const logoutMutation = useLogout();
   const insets = useSafeAreaInsets();
+  const user = useUser();
 
   return (
     <ScrollView
@@ -30,8 +32,8 @@ export default function MyScreen() {
             source={require("@/assets/images/react-logo.png")}
             resizeMode="contain"
           />
-          <Text style={styles.nameText}>코코벤 님</Text>
-          <Text style={styles.emailText}>example@forA.com</Text>
+          <Text style={styles.nameText}>{`${user?.nickname} 님`}</Text>
+          <Text style={styles.emailText}>{user?.email}</Text>
         </View>
       </View>
 
@@ -65,7 +67,10 @@ export default function MyScreen() {
         </Pressable>
       </View>
 
-      <Pressable style={styles.settingContainer}>
+      <Pressable
+        style={styles.settingContainer}
+        onPress={() => router.push("/(tabs)/my/setting")}
+      >
         <Text style={styles.settingText}>계정 설정</Text>
       </Pressable>
 
