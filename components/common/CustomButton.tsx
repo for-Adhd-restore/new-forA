@@ -4,19 +4,40 @@ import { Pressable, PressableProps, StyleSheet, Text } from "react-native";
 
 interface CustomButtonProps extends PressableProps {
   label: string;
-  isValid?: boolean;
+  isSelected?: boolean; // 칩 버튼 전용
+  size?: "large" | "medium";
+  variant?: "standard" | "chip" | "login";
 }
 
-function CustomButton({ label, isValid = false, ...props }: CustomButtonProps) {
+function CustomButton({
+  label,
+  isSelected = false, // 칩 버튼
+  disabled,
+  variant = "standard",
+  size = "medium",
+  ...props
+}: CustomButtonProps) {
   return (
     <Pressable
-      style={[
+      disabled={disabled}
+      style={({ pressed }) => [
         styles.container,
-        isValid && { backgroundColor: colors.GREEN[400] },
+        styles[variant],
+        styles[size],
+        isSelected && variant === "chip" && styles.selected,
+        disabled && styles.disabled,
+        pressed && !disabled && styles.pressed,
       ]}
       {...props}
     >
-      <Text style={[styles.label, isValid && { color: colors.WHITE }]}>
+      <Text
+        style={[
+          styles.label,
+          styles[`${variant}Text`],
+          isSelected && variant === "chip" && styles.selectedText,
+          disabled && styles.disabledText,
+        ]}
+      >
         {label}
       </Text>
     </Pressable>
@@ -25,14 +46,67 @@ function CustomButton({ label, isValid = false, ...props }: CustomButtonProps) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 16,
-    borderRadius: 8,
     alignItems: "center",
-    backgroundColor: colors.GRAY[200],
+    justifyContent: "center",
+  },
+  label: {
+    fontWeight: "600",
   },
 
-  label: {
+  pressed: {
+    opacity: 0.8,
+  },
+
+  // variant
+  standard: {
+    borderRadius: 6,
+    backgroundColor: colors.GREEN[400],
+  },
+  chip: {
+    borderRadius: 999,
+    backgroundColor: colors.GRAY[200],
+  },
+  login: {
+    borderRadius: 999,
+    backgroundColor: colors.GREEN[400],
+  },
+
+  loginText: {
+    fontSize: 18,
+    color: colors.WHITE,
+  },
+  standardText: {
     fontSize: 16,
+    color: colors.WHITE,
+  },
+  chipText: {
+    color: colors.BLACK,
+    fontSize: 14,
+  },
+
+  // size
+  large: {
+    paddingVertical: 20,
+  },
+  medium: {
+    paddingVertical: 10,
+    paddingHorizontal: 23,
+  },
+
+  // state
+  selected: {
+    backgroundColor: colors.GREEN[400],
+  },
+  selectedText: {
+    color: colors.WHITE,
+  },
+
+  disabled: {
+    backgroundColor: colors.GRAY[200],
+    opacity: 0.5,
+  },
+  disabledText: {
+    color: colors.BLACK,
   },
 });
 
